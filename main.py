@@ -9,14 +9,15 @@ REGEX = "https://mega\.nz/((folder|file)/([^#]+)#(.+)|#(F?)!([^!]+)!(.+))"
 def mega_checker(url: str) -> bool:
     if not bool(re.search(REGEX, url)):
         return False
+        
+    link_id = url.split("/")[4].split("#")[0]
 
     if url.split("/")[3] == "folder":
         payload = {'a': 'f', 'c': 1, 'r': 1, 'ca': 1}
     else:
-        payload = {'a': 'g', 'p': id}
+        payload = {'a': 'g', 'p': link_id}
 
     sequence_num = random.randint(0, 0xFFFFFFFF)
-    link_id = url.split("/")[4].split("#")[0]
 
     response = requests.post(
         f"https://g.api.mega.co.nz/cs?id={sequence_num}&n={link_id}",
