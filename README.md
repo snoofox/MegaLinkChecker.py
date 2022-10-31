@@ -1,2 +1,2 @@
-# is_Mega_Link_Dead
+# MegaLinkChecker.py
 Python based tool to check if mega.nz shared link is dead or not
